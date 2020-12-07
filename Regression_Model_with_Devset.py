@@ -15,7 +15,8 @@ x4 = (database[1:35,5]-66.2)/9.5 # NH3 sccm
 x5 = (database[1:35,6]-1526.9)/311.3 # N2 sccm
 y = database[1:35,7]  # Tensile Stress
 n = len(y)
-print(n)
+print("Number of Training set=", n)
+print("Number of Dev set=", len(database[1:,2])-n)
 
 X1 = tf.compat.v1.placeholder(tf.float32)
 X2 = tf.compat.v1.placeholder(tf.float32)
