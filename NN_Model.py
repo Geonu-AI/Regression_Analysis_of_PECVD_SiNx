@@ -44,6 +44,8 @@ plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
 
 
+
+#Evaluation ...
 Xnew = database[1:,2:7]
 Xnew= scaler_x.transform(Xnew)
 ynew= model.predict(Xnew)
