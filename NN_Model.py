@@ -26,8 +26,8 @@ X_train, X_test, y_train, y_test = train_test_split(xscale, yscale)
 
 
 model = Sequential()
-model.add(Dense(1, input_dim = 5, kernel_initializer='normal', activation='linear', name='dense_1'))
-model.add(Dense(1,activation='linear',name='dense_output'))
+model.add(Dense(2, input_dim = 5, kernel_initializer='normal', activation='sigmoid', name='dense_1'))
+model.add(Dense(1, activation='linear',name='dense_output'))
 
 model.compile(loss='mse', optimizer = 'adam', metrics=['mse','mae'])
 history = model.fit(X_train, y_train, epochs=1000, batch_size=50,  verbose=1, validation_split=0.2)
