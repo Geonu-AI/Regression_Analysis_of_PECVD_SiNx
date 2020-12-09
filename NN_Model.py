@@ -2,6 +2,7 @@
 ## Reference: https://datascienceplus.com/keras-regression-based-neural-networks/
 
 import numpy as np
+import pandas as pd
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
@@ -26,11 +27,12 @@ X_train, X_test, y_train, y_test = train_test_split(xscale, yscale)
 
 
 model = Sequential()
-model.add(Dense(2, input_dim = 5, kernel_initializer='normal', activation='sigmoid', name='dense_1'))
+model.add(Dense(3, input_dim = 5, kernel_initializer='normal', activation='tanh', name='dense_1'))
 model.add(Dense(1, activation='linear',name='dense_output'))
 
+epoch1 = 3000
 model.compile(loss='mse', optimizer = 'adam', metrics=['mse','mae'])
-history = model.fit(X_train, y_train, epochs=1000, batch_size=50,  verbose=1, validation_split=0.2)
+history = model.fit(X_train, y_train, epochs=epoch1, batch_size=50,  verbose=1, validation_split=0.2)
 
 print(history.history.keys())
 
@@ -55,6 +57,7 @@ Xnew = scaler_x.inverse_transform(Xnew)
 
 for i in range(0,43):
     print(ynew[i,0])
-# print(ynew)
+
 # for i in range(0,len(database[1:,7])):
 #     print("X=%s, Predicted=%s" % (Xnew[i], ynew[i]))
+
