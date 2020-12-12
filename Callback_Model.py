@@ -18,7 +18,14 @@ yscale=scaler_y.transform(y)
 X_train, X_test, Y_train, Y_test = train_test_split(xscale, yscale)
 
 GK2020_Ver1_CalledBack = keras.models.load_model('results/GK2020_Ver1.h5')
+
+# Prediction with new inputs for future experiments
+# using normalization parameters from training set
+
+
+#Prediction with training set
 ynew = GK2020_Ver1_CalledBack.predict(xscale)
 y_pred = scaler_y.inverse_transform(ynew)
 for i in range(0,len(y_pred)):
     print(y_pred[i,0])
+
