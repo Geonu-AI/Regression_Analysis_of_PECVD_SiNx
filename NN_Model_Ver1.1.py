@@ -62,8 +62,8 @@ for i in range(0,len(y_pred)):
     print(y_pred[i,0])
 
 # # Save the model!
-# GK2020_Ver1.save_weights('results/GK2020_Ver1_weights (400 epochs, 2tanh + 1linear).h5')
-# GK2020_Ver1.save('results/GK2020_Ver1 (400 epochs, 2tanh + 1linear).h5')
+# GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights (400 epochs, 2tanh + 1linear).h5')
+# GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1 (400 epochs, 2tanh + 1linear).h5')
 #
 
 
