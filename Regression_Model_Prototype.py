@@ -2,7 +2,6 @@
 
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
 tf.compat.v1.disable_v2_behavior()
 tf.compat.v1.disable_eager_execution()
 
@@ -31,7 +30,7 @@ W5 = tf.Variable(np.random.randn(), name = "W5")
 b = tf.Variable(np.random.randn(), name = "b")
 
 learning_rate = 0.05
-training_epochs = 700
+training_epochs = 300
 
 # Hypothesis
 ### y_pred = tf.add(tf.add(tf.add(tf.add(tf.add(tf.multiply(X1, W1), tf.multiply(X2, W2)), tf.multiply(X3, W3)), tf(multiply(X4,W4))),tf(multiply(X5,W5))),b)
