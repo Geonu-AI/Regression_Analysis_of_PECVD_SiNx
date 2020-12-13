@@ -35,7 +35,7 @@ b = tf.Variable(np.random.randn(), name = "b")
 C = []
 
 learning_rate = 0.02
-training_epochs = 500
+training_epochs = 3000
 
 # Hypothesis
 ### y_pred = tf.add(tf.add(tf.add(tf.add(tf.add(tf.multiply(X1, W1), tf.multiply(X2, W2)), tf.multiply(X3, W3)), tf(multiply(X4,W4))),tf(multiply(X5,W5))),b)

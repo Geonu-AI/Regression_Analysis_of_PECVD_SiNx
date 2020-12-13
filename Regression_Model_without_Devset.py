@@ -5,6 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 tf.compat.v1.disable_v2_behavior()
 tf.compat.v1.disable_eager_execution()
+# tf.debugging.set_log_device_placement(True)
+print("tf.test.is_gpu_available?",tf.test.is_gpu_available())
 
 database = np.genfromtxt('database/Data Set.csv',delimiter=',')
 
@@ -32,8 +34,8 @@ b = tf.Variable(np.random.randn(), name = "b")
 
 C = []
 
-learning_rate = 0.001
-training_epochs = 1500
+learning_rate = 0.02
+training_epochs = 1000
 
 # Hypothesis
 ### y_pred = tf.add(tf.add(tf.add(tf.add(tf.add(tf.multiply(X1, W1), tf.multiply(X2, W2)), tf.multiply(X3, W3)), tf(multiply(X4,W4))),tf(multiply(X5,W5))),b)
