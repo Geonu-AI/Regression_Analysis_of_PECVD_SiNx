@@ -40,39 +40,53 @@ print(scaler_y.fit(y))
 yscale=scaler_y.transform(y)
 X_train, X_test, Y_train, Y_test = train_test_split(xscale, yscale)
 
+# Hyper Parameter selection
 
 GK2020_Ver1 = GK2020(x.shape[1:])
 GK2020_Ver1.compile(loss='mse', optimizer = 'adam', metrics=['accuracy'])
-GK2020_Ver1.fit(X_train, Y_train, epochs= 10000, batch_size= 50, verbose= 0)
 
-# Model Evaluation
-preds = GK2020_Ver1.evaluate(x = xscale, y= yscale)
-print()
-print("Loss=", str(preds[0]))
-print("Test Accuracy=", str(preds[1]))
 
-# Model Information
-GK2020_Ver1.summary()
-# plot_model(GK2020_Ver1, to_file='GK2020_Ver1.png')
-# SVG(model_to_dot(GK2020_Ver1).create(prog='dot', format='svg'))
+for i in range(1,5):
+    GK2020_Ver1.fit(X_train, Y_train, epochs= 30*i, batch_size= 50, verbose= 0)
+    y_pred = []
+    ynew = GK2020_Ver1.predict(xscale)
+    y_pred_np = scaler_y.inverse_transform(ynew)
+    for j in range(0, len(y_pred_np)):
+        y_pred.append(y_pred_np[j, 0])
+    plt.plot(y_pred_np, linestyle='--', linewidth = 0.8, label='Y_pred, a='+str(30*i))
 
-# # Model Prediction for graph generation
 y_exp = []
-y_pred = []
-ynew = GK2020_Ver1.predict(xscale)
-y_pred_np = scaler_y.inverse_transform(ynew)
-for i in range(0,len(y_pred_np)):
-    y_pred.append(y_pred_np[i,0])
-    y_exp.append(y[i,0])
-
-
+for i in range(0, len(yscale)):
+    y_exp.append(y[i, 0])
 plt.plot(y_exp, color='blue', label='Y_exp')
-plt.plot(y_pred_np, color = 'red', linestyle ='--', label='Y_pred, a=')
+
+# y_pred = []
+# ynew = GK2020_Ver1.predict(xscale)
+# y_pred_np = scaler_y.inverse_transform(ynew)
+# for i in range(0,len(y_pred_np)):
+#     y_pred.append(y_pred_np[i,0])
+# plt.plot(y_pred_np, color = 'red', linewidth = 0.7, label='Y_pred_last')
+
 plt.legend()
 plt.xlabel('PECVD Deposition Exp.')
 plt.ylabel('Tensile Stress (MPa)')
 plt.title('Neural Network Prediction vs. Experimental Results')
 plt.show()
+
+
+
+## Model Evaluation
+# preds = GK2020_Ver1.evaluate(x = xscale, y= yscale)
+# print()
+# print("Loss=", str(preds[0]))
+# print("Test Accuracy=", str(preds[1]))
+
+## Model Information
+# GK2020_Ver1.summary()
+# plot_model(GK2020_Ver1, to_file='GK2020_Ver1.png')
+# SVG(model_to_dot(GK2020_Ver1).create(prog='dot', format='svg'))
+
+
 # # Save the model!
 # GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights (400 epochs, 2tanh + 1linear).h5')
 # GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1 (400 epochs, 2tanh + 1linear).h5')
