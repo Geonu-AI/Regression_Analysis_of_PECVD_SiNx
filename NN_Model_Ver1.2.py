@@ -20,7 +20,7 @@ def GK2020(input_shape):
     a Model() instance in Keras
     """
     X_input = Input(input_shape)
-    X = Dense(2, activation='tanh',kernel_initializer='normal', name='dense_1')(X_input)
+    X = Dense(3, activation='tanh',kernel_initializer='normal', name='dense_1')(X_input)
     X = Dense(1, activation='linear', name='dense_output')(X)
     model = Model(inputs = X_input, outputs = X, name = 'GK2020')
 
@@ -43,7 +43,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(xscale, yscale)
 
 GK2020_Ver1 = GK2020(x.shape[1:])
 GK2020_Ver1.compile(loss='mse', optimizer = 'adam', metrics=['accuracy'])
-GK2020_Ver1.fit(X_train, Y_train, epochs= 10000, batch_size= 50, verbose= 0)
+GK2020_Ver1.fit(X_train, Y_train, epochs= 50000, batch_size= 50, verbose= 1)
 
 # Model Evaluation
 preds = GK2020_Ver1.evaluate(x = xscale, y= yscale)
@@ -55,6 +55,13 @@ print("Test Accuracy=", str(preds[1]))
 GK2020_Ver1.summary()
 # plot_model(GK2020_Ver1, to_file='GK2020_Ver1.png')
 # SVG(model_to_dot(GK2020_Ver1).create(prog='dot', format='svg'))
+
+
+# Save the model!
+GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights_(50000 epochs, 3tanh + 1linear).h5')
+GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1_(50000 epochs, 3tanh + 1linear).h5')
+
+
 
 # # Model Prediction for graph generation
 y_exp = []
@@ -73,10 +80,6 @@ plt.xlabel('PECVD Deposition Exp.')
 plt.ylabel('Tensile Stress (MPa)')
 plt.title('Neural Network Prediction vs. Experimental Results')
 plt.show()
-# # Save the model!
-# GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights (400 epochs, 2tanh + 1linear).h5')
-# GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1 (400 epochs, 2tanh + 1linear).h5')
-#
 
 
 

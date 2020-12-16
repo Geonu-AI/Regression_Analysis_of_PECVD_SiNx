@@ -88,8 +88,8 @@ plt.show()
 
 
 # # Save the model!
-# GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights (400 epochs, 2tanh + 1linear).h5')
-# GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1 (400 epochs, 2tanh + 1linear).h5')
+# GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights (20000 epochs, 2tanh + 1linear).h5')
+# GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1 (20000 epochs, 2tanh + 1linear).h5')
 #
 
 
