@@ -43,7 +43,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(xscale, yscale)
 
 GK2020_Ver1 = GK2020(x.shape[1:])
 GK2020_Ver1.compile(loss='mse', optimizer = 'adam', metrics=['accuracy'])
-GK2020_Ver1.fit(X_train, Y_train, epochs= 50000, batch_size= 50, verbose= 1)
+GK2020_Ver1.fit(X_train, Y_train, epochs= 3500, batch_size= 50, verbose= 1)
 
 # Model Evaluation
 preds = GK2020_Ver1.evaluate(x = xscale, y= yscale)
@@ -58,8 +58,8 @@ GK2020_Ver1.summary()
 
 
 # Save the model!
-GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights_(50000 epochs, 3tanh + 1linear).h5')
-GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1_(50000 epochs, 3tanh + 1linear).h5')
+GK2020_Ver1.save_weights('results/Models_Trained/GK2020_Ver1_weights_(35000 epochs, 3tanh + 1linear).h5')
+GK2020_Ver1.save('results/Models_Trained/GK2020_Ver1_(35000 epochs, 3tanh + 1linear).h5')
 
 
 
